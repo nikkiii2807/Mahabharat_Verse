@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Noto+Serif+Devanagari:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --gold-primary: #D4AF37;
+  --gold-light: #FFD700;
+  --gold-dark: #B8860B;
+  --deep-blue: #0A1628;
+  --royal-blue: #0D2137;
+  --fire-orange: #FF6B35;
+  --cosmic-purple: #2D1B69;
+  --stone-gray: #1a1a2e;
+  
+  --gradient-hero: linear-gradient(180deg, #050e1a 0%, #0A1628 40%, #0D2137 100%);
+  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #B8860B 100%);
+  --gradient-fire: radial-gradient(ellipse at center, #FF6B35 0%, #7c2d12 70%);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--deep-blue);
+  color: #e8dcc8;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #B8860B);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD700;
+}
+
+/* ============ SELECTION ============ */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #FFD700;
+}
+
+/* ============ TYPOGRAPHY ============ */
+.font-display {
+  font-family: 'Cinzel Decorative', serif;
+  letter-spacing: 0.05em;
+}
+
+.font-devanagari {
+  font-family: 'Noto Serif Devanagari', serif;
+}
+
+/* ============ GLASS EFFECTS ============ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.glass-dark {
+  background: rgba(10, 22, 40, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), 0 20px 60px rgba(0,0,0,0.4);
+  transform: translateY(-4px);
+}
+
+/* ============ GOLD EFFECTS ============ */
+.gold-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-border {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1), inset 0 0 20px rgba(212, 175, 55, 0.02);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+.gold-glow:hover {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 100px rgba(212, 175, 55, 0.2);
+}
+
+/* ============ FIRE EFFECTS ============ */
+.fire-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.4), 0 0 60px rgba(255, 107, 53, 0.1);
+  animation: fireFlicker 2s ease-in-out infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.8), 0 0 80px rgba(255, 107, 53, 0.3); }
+}
+
+/* ============ BUTTONS ============ */
+.btn-gold {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--gradient-gold);
+  color: #0A1628;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-gold:hover::before {
+  opacity: 1;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+.btn-outline-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: #D4AF37;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============ SECTION STYLES ============ */
+.section-heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.section-divider-icon {
+  color: #D4AF37;
+  font-size: 1.2rem;
+}
+
+/* ============ PARTICLE CANVAS ============ */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ LOADING SCREEN ============ */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(ellipse at center, #1a0a2e 0%, #0A1628 60%, #050e1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.loading-om {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 5rem;
+  color: #D4AF37;
+  animation: omPulse 2s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+}
+
+@keyframes omPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.3); }
+}
+
+.loading-bar {
+  width: 300px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--gradient-gold);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* ============ CUSTOM SCROLLING ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ HERO SECTION ============ */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============ NAV ============ */
+.nav-glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+}
+
+.nav-glass.scrolled {
+  background: rgba(5, 14, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  padding: 0.875rem 2rem;
+}
+
+/* ============ CHAPTER CARDS ============ */
+.chapter-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.9) 100%);
+  z-index: 1;
+}
+
+.chapter-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+/* ============ CHARACTER CARDS ============ */
+.character-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.character-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.2), 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.character-card-aura {
+  position: absolute;
+  inset: -20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  filter: blur(20px);
+  border-radius: 50%;
+}
+
+.character-card:hover .character-card-aura {
+  opacity: 0.3;
+}
+
+/* ============ TIMELINE ============ */
+.timeline-container {
+  position: relative;
+  overflow-x: auto;
+  padding: 2rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.timeline-track {
+  display: flex;
+  gap: 0;
+  position: relative;
+  min-width: max-content;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  transform: translateY(-50%);
+}
+
+.timeline-event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+  cursor: pointer;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #D4AF37;
+  border: 3px solid #0A1628;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  transition: all 0.3s ease;
+  z-index: 1;
+  margin: auto;
+}
+
+.timeline-event:hover .timeline-dot {
+  transform: scale(1.5);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 1);
+}
+
+/* ============ WAR DASHBOARD ============ */
+.war-day-btn {
+  min-width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(10, 22, 40, 0.8);
+  color: rgba(212, 175, 55, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.war-day-btn:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.war-day-btn.active {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #D4AF37;
+  color: #FFD700;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* ============ GITA VERSE CARD ============ */
+.verse-card {
+  background: linear-gradient(135deg, rgba(45, 27, 105, 0.3) 0%, rgba(10, 22, 40, 0.8) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+.verse-card:hover {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.sanskrit-text {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #D4AF37;
+  text-align: center;
+}
+
+/* ============ AI CHAT ============ */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chat-bubble-user {
+  align-self: flex-end;
+  max-width: 70%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px 16px 4px 16px;
+  padding: 0.875rem 1.25rem;
+  color: #fde68a;
+  font-size: 0.95rem;
+}
+
+.chat-bubble-ai {
+  align-self: flex-start;
+  max-width: 80%;
+  background: rgba(10, 22, 40, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px 16px 16px 4px;
+  padding: 0.875rem 1.25rem;
+  color: #e8dcc8;
+  font-size: 0.95rem;
+}
+
+/* ============ COSMIC BACKGROUND ============ */
+.cosmic-bg {
+  background: radial-gradient(ellipse at 20% 50%, #2D1B69 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, #1e3a5f 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 100%, #450a0a 0%, transparent 40%),
+              linear-gradient(180deg, #050e1a 0%, #0A1628 100%);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .btn-gold, .btn-outline-gold {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .nav-glass {
+    padding: 1rem;
+  }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  body { background: white; color: black; }
+}
