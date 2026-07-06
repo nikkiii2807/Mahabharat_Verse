@@ -6,7 +6,8 @@ import HeroSection from './components/HeroSection';
 import StorySection from './components/StorySection';
 import GitaSection from './components/GitaSection';
 import VishwaroopSection from './components/VishwaroopSection';
-import CharactersSection from './components/CharactersSection';
+import KrishnaJourneySection from './components/KrishnaJourneySection';
+import FamilyTreeSection from './components/FamilyTreeSection';
 import { KingdomMap, WarCommandCenter } from './components/WorldSections';
 import { TimelineSection, AIGuruSection, AlternateHistorySection } from './components/AdvancedSections';
 import Footer from './components/Footer';
@@ -185,7 +186,8 @@ const App: React.FC = () => {
               <StorySection />
               <GitaSection />
               <VishwaroopSection />
-              <CharactersSection />
+              <KrishnaJourneySection />
+              <FamilyTreeSection />
               <KingdomMap />
               <WarCommandCenter />
               <TimelineSection />

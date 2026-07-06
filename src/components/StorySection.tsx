@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { storyArcs } from '../data/story';
 import type { StoryArc } from '../data/story';
+import { characters } from '../data/characters';
+import { CharacterModal } from './CharacterModal';
 
 const StoryArcCard: React.FC<{ arc: StoryArc; index: number; onClick: () => void }> = ({ arc, index, onClick }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,6 +62,7 @@ const StoryArcCard: React.FC<{ arc: StoryArc; index: number; onClick: () => void
 };
 
 const ArcDetailModal: React.FC<{ arc: StoryArc; onClose: () => void }> = ({ arc, onClose }) => {
+  const [selectedChar, setSelectedChar] = useState<any>(null);
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -127,15 +130,40 @@ const ArcDetailModal: React.FC<{ arc: StoryArc; onClose: () => void }> = ({ arc,
               <span className="section-divider-icon">👥</span>
               <span className="font-display text-xs tracking-widest text-yellow-400/60">KEY CHARACTERS</span>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {arc.characters.map(c => (
-                <span key={c} className="px-3 py-1 rounded-full font-display text-xs capitalize gold-text"
-                  style={{ background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)' }}>
-                  {c}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-2.5">
+              {arc.characters.map(c => {
+                const charObj = characters.find(char => char.id === c);
+                const symbol = charObj?.symbol || '👤';
+                const name = charObj?.name || c.charAt(0).toUpperCase() + c.slice(1);
+                return (
+                  <span
+                    key={c}
+                    onClick={() => {
+                      if (charObj) {
+                        setSelectedChar(charObj);
+                      }
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-xs text-yellow-100/90 border transition-all hover:scale-105 hover:bg-yellow-400/10 cursor-pointer"
+                    style={{
+                      background: 'rgba(212,175,55,0.08)',
+                      borderColor: 'rgba(212,175,55,0.25)',
+                    }}
+                    title={`Click to view ${name} details`}
+                  >
+                    <span className="text-sm">{symbol}</span>
+                    <span className="font-medium tracking-wide">{name}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
+
+          {/* Character detail modal inside story modal */}
+          <AnimatePresence>
+            {selectedChar && (
+              <CharacterModal character={selectedChar} onClose={() => setSelectedChar(null)} />
+            )}
+          </AnimatePresence>
 
           <div className="p-4 rounded-xl" style={{ background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.1)' }}>
             <span className="font-display text-xs tracking-widest text-yellow-400/50">MOOD</span>
